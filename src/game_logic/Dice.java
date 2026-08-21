@@ -56,19 +56,19 @@ public class Dice {
 
     public static int throwSticksWithVisualization() {
         System.out.print("\nThrowing sticks: ");
-        int lightSide = 0;
+        int darkSide = 0;
         
         for (int i = 0; i < 4; i++) {
-            boolean isLight = random.nextBoolean();
-            if (isLight) {
+            boolean isdark = random.nextBoolean();
+            if (isdark) {
                 System.out.print("○ ");
-                lightSide++;
+                darkSide++;
             } else {
                 System.out.print("● ");
             }
         }
 
-        int result = (lightSide == 0 ) ? 5 : lightSide;
+        int result = (darkSide == 0 ) ? 5 : darkSide;
         System.out.printf("-> Result: %d\n", result);
         return result;
     }

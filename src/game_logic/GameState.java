@@ -62,6 +62,17 @@ public class GameState {
     public boolean isGameOver() {
         return board.isGameOver();
     }
+        public int getCost(PlayerType player) {
+        return Cost.calculateTotalCost(board, player);
+    }
+    
+    public double getCumulativeCost(PlayerType player) {
+        return Cost.calculateCumulativeCost(this, player);
+    }
+    
+    public void printCostInfo(PlayerType player) {
+        Cost.printCostDetails(this, player);
+    }
 
 
     public PlayerType getWinner() {
@@ -85,7 +96,7 @@ public class GameState {
 
 
 public void applyMove(Move move) {
-    applyMove(move, true); // silent by default للمحاكاة
+    applyMove(move, true);
 }
 public void applyMove(Move move, boolean silent) {
     Piece pieceInThisBoard = board.findP(

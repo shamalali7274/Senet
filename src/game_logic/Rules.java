@@ -97,26 +97,25 @@ public static Move canMovePiece(Board board, Piece piece, int steps) {
 }
 
 
-public static void checkAndPenalizeSpecialHouses(Board board, PlayerType player) {
-    List<Piece> pieces = board.getPs(player);
+ public static void checkAndPenalizeSpecialHouses(Board board, PlayerType player) {
+     List<Piece> pieces = board.getPs(player);
 
-    for (Piece piece : pieces) {
-        if (//piece.getState() == PieceState.WAITING_EXACT_ROLL &&
-            piece.getNeedsExactRoll() != null) {
+     for (Piece piece : pieces) {
+         if (piece.getNeedsExactRoll() != null) {
 
-            int position = piece.getPosition();
-            CellType cellType = board.getC(position).getType();
+             int position = piece.getPosition();
+             CellType cellType = board.getC(position).getType();
 
-            if (cellType == CellType.THREE_TRUTHS ||
-                cellType == CellType.RE_ATOUM ||
-                cellType == CellType.HORUS) {
+             if (cellType == CellType.THREE_TRUTHS ||
+                 cellType == CellType.RE_ATOUM ||
+                 cellType == CellType.HORUS) {
 
-                System.out.println("→ " + piece + " didn't get the correct roll, returning to rebirth house");
-                returnToRebirth(board, piece);
-            }
-        }
-    }
-}
+                 System.out.println("→ " + piece + " didn't get the correct roll, returning to rebirth house");
+                 returnToRebirth(board, piece);
+             }
+         }
+     }
+ }
 
 public static boolean applyMove(Board board, Move move, boolean silent) {
     if (move == null) return false;
@@ -292,10 +291,10 @@ public static void checkSpecialHousePenalties(Board board, PlayerType player) {
 
     public static boolean isValidMove(Board board, Move move) {
         if (move == null) return false;
-        
+
         Piece piece = move.getPiece();
         List<Move> validMoves = getValidMoves(board, piece.getOwner(), move.getSteps());
-        
+
         for (Move valid : validMoves) {
             if (valid.getPiece().getId() == piece.getId() &&
                 valid.getFromPosition() == move.getFromPosition() &&
@@ -303,10 +302,10 @@ public static void checkSpecialHousePenalties(Board board, PlayerType player) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
 
     public static Board cloneBoard(Board board) {
         return new Board(board);
@@ -332,7 +331,7 @@ public static Board applyMoveCloned(Board board, Move move) {
     applyMove(newBoard, clonedMove, true); // true = silent mode
     return newBoard;
 }
-
+ 
     
 
     public static void printValidMoves(List<Move> moves) {

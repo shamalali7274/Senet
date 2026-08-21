@@ -96,10 +96,10 @@ public class Main {
                 if (value >= min && value <= max) {
                     return value;
                 } else {
-                    System.out.printf("❌ Please enter a number between %d and %d: ", min, max);
+                    System.out.printf(" Please enter a number between %d and %d: ", min, max);
                 }
             } catch (NumberFormatException e) {
-                System.out.print("❌ Please enter a valid number: ");
+                System.out.print(" Please enter a valid number: ");
             }
         }
     }

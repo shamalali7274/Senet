@@ -84,6 +84,9 @@ public Piece findP(int id, PlayerType owner) {
             new ArrayList<>(whiteP) : new ArrayList<>(blackP);
     }
 
+    public List<Piece> getPieces(PlayerType player) {
+        return getPs(player);
+    }
 
     public boolean isSquareOccupied(int position) {
         if (position < 1 || position > 30) return false;

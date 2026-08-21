@@ -4,6 +4,7 @@ import AI.SenetAI;
 import data_model.Move;
 import data_model.PlayerType;
 import game_logic.Board;
+import game_logic.Cost;
 import game_logic.Dice;
 import game_logic.GameState;
 import game_logic.Rules;
@@ -91,14 +92,18 @@ private void playHumanTurn() {
             if (choice >= 1 && choice <= validMoves.size()) {
                 selectedMove = validMoves.get(choice - 1);
             } else {
-                System.out.println("❌ Invalid number. Try again.");
+                System.out.println(" Invalid number. Try again.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("❌ Please enter a valid number.");
+            System.out.println(" Please enter a valid number.");
         }
     }
     System.out.println("\n✓ Applied move: " + selectedMove.getDetailedDescription());
     gameState.applyMove(selectedMove, false);
+    if (showAIDetails) {
+        System.out.println("\n=== Cost Analysis ===");
+        Cost.printCostDetails(gameState, gameState.getCurrentPlayer());
+    }
 
     Rules.penalizeSpecialHouses(
         gameState.getBoard(), 
@@ -130,7 +135,7 @@ private void playAITurn() {
     List<Move> validMoves = gameState.getValidMoves();
 
     if (validMoves.isEmpty()) {
-        System.out.println("\n❌ Computer has no valid moves. Turn skipped.");
+        System.out.println("\n Computer has no valid moves. Turn skipped.");
         
 
         Rules.penalizeSpecialHouses(
